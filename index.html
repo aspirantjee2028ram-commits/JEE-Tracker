@@ -1,0 +1,118 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>JEE Study Tracker</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@500;700&display=swap">
+<style>
+:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--bg:#f5f1e8;--card:#fff;--tx:#000;--ink:#000;--mut:#000;--pur:#7b3cff;--lime:#b6ff00;--yel:#ffe500;--grn:#00d26a;--red:#ff2e2e;--org:#ff6a00;--pink:#ff4fa3;--cy:#00c2ff}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:500 15px/1.4 "Space Grotesk",Arial,sans-serif}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 56px}
+.top{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;margin-bottom:24px}
+h1,h2,.pct,.lab,button,.c span,.f{font-family:"Archivo Black","Arial Black",Impact,sans-serif;font-weight:400}
+h1{margin:0;font-size:clamp(34px,7vw,56px);line-height:1;text-transform:uppercase;letter-spacing:-.02em}
+h1 span{display:inline-block;background:var(--pink);color:#000;border:3px solid var(--ink);padding:0 10px;transform:rotate(-1.5deg);box-shadow:4px 4px 0 var(--ink)}
+.sub{margin-top:12px;font-weight:700;color:var(--tx)}
+button{border:3px solid var(--ink);background:#fff;color:#000;padding:10px 16px;border-radius:0;cursor:pointer;text-transform:uppercase;font-size:14px;box-shadow:5px 5px 0 #000;transition:transform .08s,box-shadow .08s}
+button:hover{background:var(--lime)}button:active{transform:translate(3px,3px);box-shadow:1px 1px 0 var(--ink)}
+button.pri{background:var(--pur);color:#fff}button.pri:hover{background:#7d44e6}
+.acts{display:flex;gap:12px}
+.card{background:var(--card);color:var(--tx);border:3px solid var(--ink);border-radius:0;box-shadow:8px 8px 0 #000;padding:18px}
+.bento{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-bottom:20px}
+.big{grid-column:span 2}.bento .card{color:#000}.bento .card:first-child{background:var(--yel)}.bento .card:last-child{background:var(--cy)}
+.lab{font-size:13px;text-transform:uppercase;letter-spacing:.06em}
+.pct{font-size:clamp(48px,9vw,76px);line-height:1;margin:8px 0 12px;letter-spacing:-.03em}.pct small{font:700 15px "Space Grotesk",Arial,sans-serif;margin-left:10px;letter-spacing:0}
+.prog{height:18px;background:#fff;border:3px solid #000}.prog i{display:block;height:100%;width:0;background:var(--pink);border-right:3px solid #000;transition:width .25s}
+.fl{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.f{display:flex;align-items:center;gap:8px;padding:9px 10px;border:3px solid #000;background:#fff;color:#000;cursor:pointer;text-align:left;font-size:13px;text-transform:uppercase;box-shadow:3px 3px 0 #000}
+.f b{margin-left:auto;font-weight:400}.f.on{background:var(--pur);color:#fff}.f.on .dot{border-color:#fff}
+.dot{width:13px;height:13px;border:2px solid #000;flex:none;display:inline-block}.L{background:var(--red)}.M{background:var(--yel)}.S{background:var(--grn)}
+input[type=search]{width:100%;padding:14px;border:3px solid var(--ink);border-radius:0;background:#fff;color:#000;font:700 16px "Space Grotesk",Arial,sans-serif;margin-bottom:20px;box-shadow:6px 6px 0 #000}
+input[type=search]:focus,.f:focus-visible,button:focus-visible{outline:4px solid var(--pur);outline-offset:2px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px;align-items:start}
+.grid section{padding:0}.grid header{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;border-bottom:3px solid var(--ink);color:#000}
+.grid section:nth-child(5n+1) header{background:var(--pink)}.grid section:nth-child(5n+2) header{background:var(--yel)}.grid section:nth-child(5n+3) header{background:var(--cy)}.grid section:nth-child(5n+4) header{background:var(--lime)}.grid section:nth-child(5n) header{background:var(--org)}
+h2{margin:0;font-size:20px;text-transform:uppercase}.pp{font:700 14px "Space Grotesk",Arial,sans-serif;font-variant-numeric:tabular-nums;background:#000;color:#fff;padding:2px 8px}
+.r{padding:12px 14px;border-top:3px solid var(--ink)}.r:first-of-type{border-top:0}
+.rh{display:flex;align-items:center;gap:8px;margin-bottom:10px}.n{font-weight:700}.m{margin-left:auto;font-size:11px;font-weight:700;text-transform:uppercase;white-space:nowrap}
+.cs{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.c{position:relative;cursor:pointer}.c input{position:absolute;opacity:0;inset:0;cursor:pointer;margin:0}
+.c span{display:block;font-size:11px;text-transform:uppercase;padding:4px 9px;border:2px solid var(--ink);background:var(--card);color:var(--tx);transition:transform .08s}
+.c:hover span{background:var(--yel);color:#000}
+.c input:checked+span{background:var(--pur);color:#fff;box-shadow:3px 3px 0 #000;transform:translate(-1px,-1px)}.c input:focus-visible+span{outline:3px solid var(--pur);outline-offset:2px}
+.lk{margin-left:auto;display:flex;gap:12px;font-size:12px}
+a{color:var(--tx);font-weight:700;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:3px}a:hover{background:var(--lime);color:#000}
+.msg{font-weight:700;margin:14px 2px;min-height:18px}
+@media (max-width:640px){.bento{grid-template-columns:1fr 1fr}.big{grid-column:span 2}}
+@media print{:root{padding:0}body{background:#fff;color:#000;font-size:11px}.noprint,.lk,.m{display:none!important}.wrap{padding:0;max-width:none}h1 span{box-shadow:none;transform:none}
+.grid{grid-template-columns:1fr 1fr;gap:8px}.card{border:1.5px solid #000;box-shadow:none;break-inside:avoid;background:#fff;color:#000}.grid header{padding:5px 8px;border-bottom:1.5px solid #000;background:#fff!important}h2{font-size:14px}
+.r{padding:5px 8px;border-color:#000;border-top-width:1px}.rh{margin-bottom:3px}.c span{border:1px solid #000;background:#fff;color:#000;padding:1px 6px;font-size:9px;box-shadow:none}
+.c input:checked+span{background:#000;color:#fff;box-shadow:none;transform:none;-webkit-print-color-adjust:exact;print-color-adjust:exact}.dot{-webkit-print-color-adjust:exact;print-color-adjust:exact}.pp{background:none;color:#000;padding:0}}
+
+/* ---- motion ---- */
+@keyframes rise{from{opacity:0;transform:translateY(26px) rotate(1.5deg) scale(.96)}to{opacity:1;transform:none}}
+@keyframes tilt{from{opacity:0;transform:rotate(8deg) scale(.6)}to{opacity:1;transform:rotate(-1.5deg) scale(1)}}
+@keyframes pop{0%{transform:scale(.75)}55%{transform:scale(1.18) rotate(-2deg)}100%{transform:scale(1)}}
+@keyframes wig{0%,100%{transform:none}20%{transform:rotate(-2.2deg) scale(1.03)}45%{transform:rotate(2deg) scale(1.03)}70%{transform:rotate(-1deg)}}
+@keyframes mq{to{transform:translateX(-50%)}}
+@keyframes stripes{to{background-position:28px 0}}
+@keyframes fall{to{transform:translate(var(--x),105vh) rotate(var(--r))}}
+h1 span{animation:tilt .6s cubic-bezier(.34,1.56,.64,1) .15s backwards;transition:transform .2s}
+h1 span:hover{transform:rotate(1.5deg) scale(1.06)}
+.top>div:first-child .sub{animation:rise .5s ease .25s backwards}
+.acts button{animation:rise .5s cubic-bezier(.34,1.56,.64,1) backwards}.acts button:nth-child(1){animation-delay:.2s}.acts button:nth-child(2){animation-delay:.3s}
+.bento .card{animation:rise .55s cubic-bezier(.34,1.56,.64,1) backwards}.bento .card:nth-child(1){animation-delay:.1s}.bento .card:nth-child(2){animation-delay:.2s}
+.tick{overflow:hidden;border:3px solid #000;background:var(--lime);color:#000;box-shadow:6px 6px 0 #000;margin-bottom:22px;transform:rotate(-.6deg);animation:rise .5s ease .05s backwards}
+.tk{display:flex;width:max-content;animation:mq 24s linear infinite}.tick:hover .tk{animation-play-state:paused}
+.tk span{white-space:nowrap;padding:7px 0;font-family:"Archivo Black","Arial Black",Impact,sans-serif;text-transform:uppercase;font-size:14px;letter-spacing:.04em}
+button:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 #000}button:active{transform:translate(3px,3px);box-shadow:1px 1px 0 #000}
+.grid section{transition:transform .15s,box-shadow .15s}.grid section:hover{transform:translate(-3px,-3px);box-shadow:11px 11px 0 #000}
+.grid.in section{animation:rise .45s cubic-bezier(.34,1.56,.64,1) backwards;animation-delay:calc(var(--i)*45ms)}
+.grid section.cele{animation:wig .6s ease}
+.done .pp{background:var(--grn);color:#000;border:2px solid #000}.done h2::after{content:" \2713"}
+.c.pop input:checked+span{animation:pop .32s cubic-bezier(.34,1.56,.64,1)}
+.prog i{transition:width .6s cubic-bezier(.34,1.56,.64,1);background:repeating-linear-gradient(45deg,var(--pink) 0 10px,#ff86bf 10px 20px);background-size:28px 28px;animation:stripes 1s linear infinite}
+.f{transition:transform .1s,box-shadow .1s}.f:hover{transform:translate(-2px,-2px);box-shadow:5px 5px 0 #000}.f:active{transform:translate(2px,2px);box-shadow:1px 1px 0 #000}
+.cf{position:fixed;top:-14px;width:12px;height:12px;border:2px solid #000;z-index:99;pointer-events:none;animation:fall 1.7s ease-in forwards}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+@media print{*,*::before,*::after{animation:none!important;transition:none!important}.tick,.cf{display:none!important}}
+</style></head><body><div class="wrap">
+<div class="top"><div><h1>JEE <span>Tracker</span></h1><div class="sub">Class 11 + 12 &middot; tick each stage as you finish it</div></div>
+<div class="acts noprint"><button id="pr">Print</button><button class="pri" id="dx">Download .xlsx</button></div></div>
+<div class="tick noprint" aria-hidden="true"><div class="tk"><span>Tick it ✦ Track it ✦ Crack it ✦ JEE ✦ One chapter at a time ✦ Tick it ✦ Track it ✦ Crack it ✦ JEE ✦ One chapter at a time ✦ Tick it ✦ Track it ✦ Crack it ✦ JEE ✦ One chapter at a time ✦ Tick it ✦ Track it ✦ Crack it ✦ JEE ✦ One chapter at a time ✦ </span><span>Tick it ✦ Track it ✦ Crack it ✦ JEE ✦ One chapter at a time ✦ Tick it ✦ Track it ✦ Crack it ✦ JEE ✦ One chapter at a time ✦ Tick it ✦ Track it ✦ Crack it ✦ JEE ✦ One chapter at a time ✦ Tick it ✦ Track it ✦ Crack it ✦ JEE ✦ One chapter at a time ✦ </span></div></div>
+<div class="bento noprint"><div class="card big"><div class="lab">Overall progress</div><div class="pct"><span id="pv">0%</span><small id="pt"></small></div><div class="prog"><i id="pb"></i></div></div>
+<div class="card big"><div class="lab">Show by study mode</div><div class="fl" id="fl"></div></div></div>
+<input type="search" id="q" class="noprint" placeholder="Search a chapter&hellip;" aria-label="Search chapters">
+<div class="grid" id="g"></div><div class="msg noprint" id="st"></div></div>
+<script>
+const RM=matchMedia("(prefers-reduced-motion: reduce)").matches;
+const D=[["PART 1",[["Units and Measurements","S","Saleem Sir Units, Dimensions & Errors"],["Vectors and Relative Motion","L","Saleem Sir Kinematics (1D + 2D)"],["Motion in 1D and 2D","L","Saleem Sir Kinematics (1D + 2D)"],["Mole Concept","L","Faisal Sir Mole Concept / Stoichiometry"],["Structure of Atom","S","Faisal Sir Atomic Structure"],["Basic Mathematics","M","Basic Mathematics"],["Quadratic Equation","L","TK Sir Quadratic Equations"]]],["PART 2",[["Laws of Motion","L","Saleem Sir Laws of Motion + Friction"],["Work, Power and Energy","L","Saleem Sir Work, Energy & Power"],["Center of Mass, Linear Momentum, Collision","L","Saleem Sir Centre of Mass + Collisions"],["Thermodynamics and Thermochemistry","L","Faisal Sir Chemical Thermodynamics"],["Chemical Equilibrium","L","Faisal Sir Chemical Equilibrium"],["Sequence and Series","L","TK Sir Sequence & Series"],["Binomial Theorem","S","TK Sir Binomial Theorem"]]],["PART 3",[["Circular Motion and Rotational Motion","L","Saleem Sir Rotational Motion"],["Gravitation","L","Saleem Sir Gravitation"],["Ionic Equilibrium","L","Faisal Sir Ionic Equilibrium"],["Redox Reactions","S","Faisal Sir Redox Reactions"],["Trigonometry","S","NV Sir Trigonometry"],["Straight Lines","L","Arvind Kalia Sir Straight Lines"]]],["PART 4",[["Mechanical Properties of Solids","S","Saleem Sir Elasticity / Properties of Solids"],["Fluids (Hydrostatics & Hydrodynamics)","L","Saleem Sir Fluid Mechanics"],["Periodic Properties","M","Om Pandey Sir Periodicity / Periodic Table"],["Chemical Bonding","L","Om Pandey Sir Chemical Bonding"],["Circle","L","Arvind Kalia Sir Circle"],["Parabola","L","Arvind Kalia Sir Parabola"]]],["PART 5",[["Thermal Properties of Matter","S","Saleem Sir Thermal Properties + Calorimetry"],["KTG & Thermodynamics","L","Saleem Sir Kinetic Theory of Gases Thermodynamics"],["p Block Elements","L","Om Pandey Sir p-Block Elements"],["d and f Block Elements","S","Om Pandey Sir d- and f-Block Elements"],["Ellipse and Hyperbola","L","Arvind Kalia Sir Ellipse Hyperbola"],["Complex Numbers","L","TK Sir Complex Numbers"]]],["PART 6",[["Oscillations","S","Saleem Sir Simple Harmonic Motion"],["Waves","L","Saleem Sir Waves & Sound"],["Coordination Chemistry","L","Om Pandey Sir Coordination Compounds"],["Qualitative Analysis","S","Om Pandey Sir Practical Chemistry + Salt Analysis"],["Permutations and Combinations","L","TK Sir Permutations & Combinations"],["Statistics","S","TK Sir Statistics"]]],["PART 7",[["Electrostatics","S","Rajwant Sir Electric Charges & Fields"],["Capacitance","S","Rajwant Sir Potential & Capacitance"],["Nomenclature","S","RA Sir GOC + IUPAC + Isomerism"],["Isomerism","L","RA Sir GOC + IUPAC + Isomerism"],["Sets and Relations","S","TK Sir Sets, Relations & Functions"],["Functions and ITF","S","NV Sir Inverse Trigonometric Functions"]]],["PART 8",[["Current Electricity","L","Rajwant Sir Current Electricity"],["Magnetic Effect of Current","L","Rajwant Sir Moving Charges & Magnetism"],["General Organic Chemistry","L","RA Sir GOC + IUPAC + Isomerism"],["Alkanes Alkenes Alkynes Aromatic Hydrocarbons (Half)","L","RA Sir Hydrocarbons"],["Limits","L","NV Sir Limits"],["Continuity and Differentiability","L","NV Sir Continuity & Differentiability"]]],["PART 9",[["Magnetic Properties of Matter","S","Rajwant Sir Magnetism & Matter"],["Electromagnetic Induction","S","Rajwant Sir Electromagnetic Induction"],["Alkanes Alkenes Alkynes Aromatic Hydrocarbons (Half)","L","RA Sir Hydrocarbons"],["Haloalkanes and Haloarenes","L","RA Sir Haloalkanes & Haloarenes"],["MOD","S","NV Sir Continuity & Differentiability"],["Application of Derivatives","L","NV Sir Application of Derivatives"]]],["PART 10",[["Alternating Current","L","Rajwant Sir Alternating Current"],["Dual Nature of Matter","S","Rajwant Sir Dual Nature of Matter & Radiation"],["Alcohol, Phenol, Ethers","L","RA Sir Alcohols, Phenols & Ethers"],["Aldehydes, Ketones, Carboxylic Acids","L","RA Sir Aldehydes & Ketones Carboxylic Acids"],["Indefinite Integration","S","NV Sir Indefinite Integration"],["Definite Integration","S","NV Sir Definite Integration"]]],["PART 11",[["Atomic Physics","S","Rajwant Sir Atoms"],["Nuclear Physics","L","Rajwant Sir Nuclei"],["Amines and N Derivatives","L","RA Sir Amines + Diazonium Salts"],["Biomolecules","S","RA Sir Biomolecules"],["Area Under Curve","S","NV Sir Area Under Curves"],["Differential Equations","L","NV Sir Differential Equations"]]],["PART 12",[["Semiconductor","S","Rajwant Sir Semiconductors + Logic Gates"],["Electromagnetic Waves and Wave Optics","S","Rajwant Sir Electromagnetic Waves Wave Optics"],["POC","S","RA Sir Purification & Characterisation"],["Dilute Solutions","L","Faisal Sir Solutions"],["Probability","L","TK Sir Probability"],["Vector Algebra","L","NV Sir Vector Algebra"]]],["PART 13",[["Ray Optics","L","Rajwant Sir Ray Optics + Optical Instruments"],["Electrochemistry","L","Faisal Sir Electrochemistry"],["Chemical Kinetics","S","Faisal Sir Chemical Kinetics"],["3-D Geometry","L","NV Sir 3D Geometry"],["Matrices and Determinants","L","TK Sir Matrices Determinants"]]]];
+const NM={L:"Lectures",M:"One-Shot (Long)",S:"One-Shot"},XL=["Theory Lectures","PYQ","Module","Short Notes","Book"],SH=["Lectures","PYQ","Module","Notes","Book"];
+const yt=s=>"https://www.youtube.com/results?search_query="+encodeURIComponent(s).replace(/%20/g,"+");
+const L1=q=>yt(q+" one shot JEE Main Advanced"),L2=q=>yt(q+" revision PYQ marathon JEE");
+const E=s=>s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/"/g,"&quot;");
+let S={},mode="",term="",key="jee-tracker-v1";
+try{S=JSON.parse(localStorage.getItem(key)||"{}")}catch(e){}
+const save=()=>{try{localStorage.setItem(key,JSON.stringify(S))}catch(e){}};
+const cnt=rows=>{let d=0;rows.forEach(r=>XL.forEach((c,i)=>{if(S[r[0]+"|"+i])d++}));return[d,rows.length*5]};
+let shown=0,wasAll=null,doneSet={};
+function tween(to){if(RM||to==shown){pv.textContent=to+"%";shown=to;return}const f=shown,t0=performance.now();shown=to;(function s(n){const k=Math.min(1,(n-t0)/450);pv.textContent=Math.round(f+(to-f)*k)+"%";if(k<1)requestAnimationFrame(s)})(t0)}
+function boom(){if(RM)return;const c=["#ff4fa3","#ffe500","#00c2ff","#b6ff00","#ff6a00","#7b3cff"];for(let i=0;i<48;i++){const e=document.createElement("i");e.className="cf";e.style.cssText=`left:${Math.random()*100}vw;background:${c[i%6]};animation-delay:${Math.random()*.4}s;--r:${Math.random()*720-360}deg;--x:${Math.random()*160-80}px`;document.body.appendChild(e);setTimeout(()=>e.remove(),2300)}}
+function update(){let D0=0,T=0;D.forEach(([p,rows],i)=>{const[d,t]=cnt(rows);D0+=d;T+=t;const e=document.querySelector('[data-p="'+i+'"]');if(e){e.textContent=d+" / "+t;const s=e.closest("section"),full=d==t;s.classList.toggle("done",full);if(full&&doneSet[i]===false&&!RM){s.classList.remove("cele");void s.offsetWidth;s.classList.add("cele")}doneSet[i]=full}else if(doneSet[i]===undefined)doneSet[i]=d==t});
+ const x=Math.round(D0/T*100);tween(x);pt.textContent=D0+" of "+T+" ticked";pb.style.width=x+"%";pb.style.borderRightWidth=x?"3px":"0";if(x==100&&wasAll===false)boom();wasAll=x==100}
+function render(anim){let h="",k=0;
+ D.forEach(([p,rows],pi)=>{const v=rows.filter(r=>(!mode||r[1]==mode)&&r[0].toLowerCase().includes(term));if(!v.length)return;
+  h+=`<section class="card" style="--i:${k++}"><header><h2>${p[0]+p.slice(1).toLowerCase()}</h2><span class="pp" data-p="${pi}"></span></header>`+
+  v.map(r=>`<div class="r"><div class="rh"><i class="dot ${r[1]}"></i><span class="n">${E(r[0])}</span><span class="m">${NM[r[1]]}</span></div><div class="cs">`+
+   SH.map((c,i)=>`<label class="c"><input type="checkbox" data-k="${E(r[0])}|${i}" ${S[r[0]+"|"+i]?"checked":""}><span>${c}</span></label>`).join("")+
+   `<span class="lk"><a href="${L1(r[2])}" target="_blank" rel="noopener">One-shot &#8599;</a><a href="${L2(r[2])}" target="_blank" rel="noopener">Backup &#8599;</a></span></div></div>`).join("")+`</section>`});
+ g.classList.toggle("in",!!anim&&!RM);g.innerHTML=h||'<div class="card">No chapters match.</div>';update()}
+g.addEventListener("change",e=>{const k=e.target.dataset.k;if(!k)return;if(e.target.checked)S[k]=1;else delete S[k];e.target.parentElement.classList.add("pop");save();update()});
+q.addEventListener("input",()=>{term=q.value.trim().toLowerCase();render()});
+const all=D.flatMap(x=>x[1]);
+fl.innerHTML=[["","All"],["L","Lectures"],["M","One-Shot (Long)"],["S","One-Shot"]].map(([c,n])=>`<button class="f" data-m="${c}">${c?`<i class="dot ${c}"></i>`:""}${n}<b>${c?all.filter(r=>r[1]==c).length:all.length}</b></button>`).join("");
+fl.addEventListener("click",e=>{const b=e.target.closest(".f");if(!b)return;mode=b.dataset.m;[...fl.children].forEach(x=>x.classList.toggle("on",x===b));render(1)});
+fl.children[0].classList.add("on");
+pr.onclick=()=>window.print();
+dx.onclick=()=>{const a=document.createElement("a");a.href="Study_Tracker.xlsx";a.download="Study_Tracker.xlsx";document.body.appendChild(a);a.click();a.remove();st.textContent="Downloading Study_Tracker.xlsx\u2026";setTimeout(()=>st.textContent="",3000)};
+render(1);
+</script></body></html>
